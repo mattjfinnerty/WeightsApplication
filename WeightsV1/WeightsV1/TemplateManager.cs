@@ -13,6 +13,8 @@ namespace WeightsV1
 {
     public partial class TemplateManager : Form
     {
+        private const string fileDirectory = @"D:\SessionTemplates\";
+
         public TemplateManager()
         {
             InitializeComponent();
@@ -21,9 +23,33 @@ namespace WeightsV1
 
         private void FillTemplateListBox()
         {
+            listBoxTemplates.DataSource = null;
+            listBoxTemplates.Items.Clear();
             DirectoryInfo di = new DirectoryInfo(@"D:\SessionTemplates");
-            FileInfo[] files = di.GetFiles("*.xml", SearchOption.AllDirectories);
+            FileInfo[] files = di.GetFiles("*.xml", SearchOption.TopDirectoryOnly);
             listBoxTemplates.DataSource = files;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to delete the highlighted template?","Confirm Deletion",MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                string fullPath = Path.Combine(fileDirectory, listBoxTemplates.SelectedItem.ToString());
+                try
+                {
+                    File.Delete(fullPath);
+                    MessageBox.Show("Template Deleted Successfully", "Success");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    throw;
+                }
+                finally
+                {
+                    FillTemplateListBox();
+                }
+            }
         }
     }
 }

@@ -55,6 +55,12 @@
     <Compile Include="AthleteAdd.Designer.cs">
       <DependentUpon>AthleteAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConfirmDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfirmDelete.Designer.cs">
+      <DependentUpon>ConfirmDelete.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExcerciseAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     </Compile>
     <EmbeddedResource Include="AthleteAdd.resx">
       <DependentUpon>AthleteAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfirmDelete.resx">
+      <DependentUpon>ConfirmDelete.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExcerciseAdd.resx">
       <DependentUpon>ExcerciseAdd.cs</DependentUpon>

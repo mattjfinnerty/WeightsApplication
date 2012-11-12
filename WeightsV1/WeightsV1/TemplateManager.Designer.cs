@@ -78,6 +78,7 @@
             this.button3.TabIndex = 4;
             this.button3.Text = "Delete";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // TemplateManager
             // 
@@ -91,6 +92,7 @@
             this.Controls.Add(this.listBoxTemplates);
             this.Name = "TemplateManager";
             this.Text = "TemplateManager";
+            this.Enter += new System.EventHandler(this.TemplateManager_Enter);
             this.ResumeLayout(false);
             this.PerformLayout();
 
