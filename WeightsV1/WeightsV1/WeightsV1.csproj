@@ -55,12 +55,6 @@
     <Compile Include="AthleteAdd.Designer.cs">
       <DependentUpon>AthleteAdd.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConfirmDelete.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ConfirmDelete.Designer.cs">
-      <DependentUpon>ConfirmDelete.cs</DependentUpon>
-    </Compile>
     <Compile Include="ExcerciseAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +82,12 @@
     <Compile Include="SessionAdd.Designer.cs">
       <DependentUpon>SessionAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="TemplateEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TemplateEditor.Designer.cs">
+      <DependentUpon>TemplateEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="TemplateManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,9 +96,6 @@
     </Compile>
     <EmbeddedResource Include="AthleteAdd.resx">
       <DependentUpon>AthleteAdd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ConfirmDelete.resx">
-      <DependentUpon>ConfirmDelete.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExcerciseAdd.resx">
       <DependentUpon>ExcerciseAdd.cs</DependentUpon>
@@ -121,6 +118,9 @@
     <EmbeddedResource Include="SessionAdd.resx">
       <DependentUpon>SessionAdd.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TemplateEditor.resx">
+      <DependentUpon>TemplateEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TemplateManager.resx">
       <DependentUpon>TemplateManager.cs</DependentUpon>
     </EmbeddedResource>
@@ -133,6 +133,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SessionTemplate.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

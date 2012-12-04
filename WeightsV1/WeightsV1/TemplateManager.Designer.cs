@@ -32,7 +32,7 @@
             this.labelTemplateList = new System.Windows.Forms.Label();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonEdit = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBoxTemplates
@@ -60,6 +60,7 @@
             this.buttonAdd.TabIndex = 2;
             this.buttonAdd.Text = "Add";
             this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // buttonEdit
             // 
@@ -70,29 +71,28 @@
             this.buttonEdit.Text = "Edit";
             this.buttonEdit.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // buttonDelete
             // 
-            this.button3.Location = new System.Drawing.Point(592, 236);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(110, 39);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Delete";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.buttonDelete.Location = new System.Drawing.Point(592, 236);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(110, 39);
+            this.buttonDelete.TabIndex = 4;
+            this.buttonDelete.Text = "Delete";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // TemplateManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(727, 396);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonEdit);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.labelTemplateList);
             this.Controls.Add(this.listBoxTemplates);
             this.Name = "TemplateManager";
             this.Text = "TemplateManager";
-            this.Enter += new System.EventHandler(this.TemplateManager_Enter);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -104,6 +104,6 @@
         private System.Windows.Forms.Label labelTemplateList;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonEdit;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonDelete;
     }
 }

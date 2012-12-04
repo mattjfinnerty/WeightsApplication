@@ -30,7 +30,7 @@ namespace WeightsV1
             listBoxTemplates.DataSource = files;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void buttonDelete_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to delete the highlighted template?","Confirm Deletion",MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
@@ -50,6 +50,12 @@ namespace WeightsV1
                     FillTemplateListBox();
                 }
             }
+        }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            Form templateEditor = new TemplateEditor();
+            templateEditor.Show();
         }
     }
 }

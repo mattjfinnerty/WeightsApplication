@@ -126,6 +126,7 @@ namespace WeightsV1
         }
 
         //Method to Send the completed data grid to db
+        //Refactor this horrendous turd
 
         private void SendData()
         {
