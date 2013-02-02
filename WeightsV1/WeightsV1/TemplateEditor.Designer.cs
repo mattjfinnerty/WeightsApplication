@@ -34,6 +34,7 @@
             this.labelRestrictType = new System.Windows.Forms.Label();
             this.comboBoxType = new System.Windows.Forms.ComboBox();
             this.checkBoxRestrict = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBoxTemplateName
@@ -88,11 +89,22 @@
             this.checkBoxRestrict.TabIndex = 5;
             this.checkBoxRestrict.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(372, 69);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // TemplateEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(470, 549);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.checkBoxRestrict);
             this.Controls.Add(this.comboBoxType);
             this.Controls.Add(this.labelRestrictType);
@@ -114,5 +126,6 @@
         private System.Windows.Forms.Label labelRestrictType;
         private System.Windows.Forms.ComboBox comboBoxType;
         private System.Windows.Forms.CheckBox checkBoxRestrict;
+        private System.Windows.Forms.Button button1;
     }
 }

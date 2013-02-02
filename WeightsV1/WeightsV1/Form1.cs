@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using WeightsV1.ObjectCreation;
 using ZedGraph;
 
 namespace WeightsV1
@@ -70,6 +71,13 @@ namespace WeightsV1
         {
             Form templateForm = new TemplateManager();
             templateForm.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Athlete matt = new Athlete(1);
+            MessageBox.Show(matt.Forename + matt.Surname);
+            List<Athlete> allAthletes = Athlete.GetAllAthletes();
         }
     }
 }

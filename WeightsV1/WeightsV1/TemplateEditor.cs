@@ -40,11 +40,12 @@ namespace WeightsV1
 
         private Label createLabel(ComboBox comboBox)
         {
-            string labelText = "Restricted To: " + comboBoxType.Text;
+            string labelText = string.Concat("Restricted To: ",comboBoxType.Text);
             Label newLabel = new Label {Text = labelText, Location = comboBox.Location};
             newLabel.Left += 125;
             newLabel.Top += 2;
             newLabel.ForeColor = Color.DarkRed;
+            newLabel.AutoSize = true;
             return newLabel;
         }
 
@@ -112,6 +113,15 @@ namespace WeightsV1
             catch (Exception ex)
             {   MessageBox.Show(ex.Message);
                 return null;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            foreach (Control box in this.Controls)
+            {
+                if (box.GetType() == typeof(ComboBox) && box.Name != "comboBoxType")
+                    MessageBox.Show(box.Text);
             }
         }
     }

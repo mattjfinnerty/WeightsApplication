@@ -20,7 +20,7 @@ namespace WeightsV1
 
             try
             {
-                SqlConnection conn = new SqlConnection("data source = localhost\\mattsql;Database=Weights;Integrated Security = SSPI;Connection Timeout = 5");
+                SqlConnection conn = new SqlConnection(ConnectionData.ConnectionInfo);
                 conn.Open();
                 DataSet ds = new DataSet();
                 SqlDataAdapter adapter = new SqlDataAdapter("Select ExcerciseTypeDesc from ExcerciseType", conn);
@@ -39,7 +39,7 @@ namespace WeightsV1
         {
             //Retrieve the Name and assign to a variable
 
-            string excerciseName = textBoxName.Text.ToString();
+            string excerciseName = textBoxName.Text;
             labelExcerciseName.ForeColor = Color.Black;
 
             //Combobox already ensures a selection is made - retrieve ExcerciseTypeID
@@ -48,9 +48,9 @@ namespace WeightsV1
 
             try
             {
-                SqlConnection conn = new SqlConnection("data source = localhost\\mattsql;Database=Weights;Integrated Security = SSPI;Connection Timeout = 5");
+                SqlConnection conn = new SqlConnection(ConnectionData.ConnectionInfo);
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("Select ExcerciseTypeID from ExcerciseType where ExcerciseTypeDesc = '" + comboBoxType.Text.ToString() + "'", conn);
+                SqlCommand cmd = new SqlCommand("Select ExcerciseTypeID from ExcerciseType where ExcerciseTypeDesc = '" + comboBoxType.Text + "'", conn);
                 ExTypeID = (int)cmd.ExecuteScalar();
             }
             catch (Exception ex)
@@ -74,7 +74,7 @@ namespace WeightsV1
         {
             try
             {
-                SqlConnection conn = new SqlConnection("data source = localhost\\mattsql;Database=Weights;Integrated Security = SSPI;Connection Timeout = 5");
+                SqlConnection conn = new SqlConnection(ConnectionData.ConnectionInfo);
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("AddExcercise", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
