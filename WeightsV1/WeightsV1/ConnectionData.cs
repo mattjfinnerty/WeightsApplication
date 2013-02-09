@@ -11,5 +11,9 @@ namespace WeightsV1
             "data source = localhost\\mattsql;Database=Weights;Integrated Security = SSPI;Connection Timeout = 5";
 
         public const string GetAllAthletes = "GetAllAthletes";
+
+        public const string UpdateAthlete = "UpdateAthlete";
+
+        public const string DeleteAthlete = "DeleteAthlete";
     }
 }

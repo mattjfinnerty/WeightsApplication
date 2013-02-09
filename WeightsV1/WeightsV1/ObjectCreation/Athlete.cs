@@ -24,8 +24,7 @@ namespace WeightsV1.ObjectCreation
         }
 
         public Athlete(int athleteId)
-        { 
-            SqlDataReader reader = null;
+        {
             SqlConnection conn = new SqlConnection(ConnectionData.ConnectionInfo);
             try
             {
@@ -33,7 +32,7 @@ namespace WeightsV1.ObjectCreation
                                             {CommandType = CommandType.StoredProcedure};
                 cmdAthlete.Parameters.AddWithValue("@AthleteId", athleteId);
                 conn.Open();
-                reader = cmdAthlete.ExecuteReader();
+                SqlDataReader reader = cmdAthlete.ExecuteReader();
                 while(reader.Read())
                 {
                     AthleteId = (int)reader["AthleteId"];
@@ -58,21 +57,24 @@ namespace WeightsV1.ObjectCreation
             SqlConnection conn = new SqlConnection(ConnectionData.ConnectionInfo);
             try
             {
-                SqlDataAdapter adapter = new SqlDataAdapter();
-                adapter.SelectCommand = new SqlCommand(ConnectionData.GetAllAthletes,conn);
-                adapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter adapter = new SqlDataAdapter
+                                             {
+                                                 SelectCommand =
+                                                     new SqlCommand(ConnectionData.GetAllAthletes, conn)
+                                                         {CommandType = CommandType.StoredProcedure}
+                                             };
 
                 DataTable dt = new DataTable();
                 conn.Open();
                 adapter.Fill(dt);
 
-                foreach(DataRow dr in dt.Rows)
+                foreach (DataRow dr in dt.Rows)
                 {
                     Athlete newAthlete = new Athlete();
-                    newAthlete.AthleteId = (int)dr[0];
-                    newAthlete.Forename = (string)dr[1];
-                    newAthlete.Surname = (string)dr[2];
-                    newAthlete.Weight = dr[3] == DBNull.Value ? null : (double?)dr[3];
+                    newAthlete.AthleteId = (int) dr[0];
+                    newAthlete.Forename = (string) dr[1];
+                    newAthlete.Surname = (string) dr[2];
+                    newAthlete.Weight = dr[3] == DBNull.Value ? null : (double?) dr[3];
                     allAthletes.Add(newAthlete);
                 }
                 return allAthletes;
@@ -81,7 +83,53 @@ namespace WeightsV1.ObjectCreation
             {
                 MessageBox.Show(ex.Message);
                 return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public Athlete UpdateAthlete(Athlete athlete)
+        {
+            SqlConnection conn = new SqlConnection(ConnectionData.ConnectionInfo);
+            try
+            {
+                SqlCommand command = new SqlCommand(ConnectionData.UpdateAthlete, conn)
+                                         {CommandType = CommandType.StoredProcedure};
+                command.Parameters.AddWithValue("@AthleteId", athlete.AthleteId);
+                command.Parameters.AddWithValue("@Forename", athlete.Forename);
+                command.Parameters.AddWithValue("@Surname", athlete.Surname);
+                if (athlete.Weight != null)
+                    command.Parameters.AddWithValue("@Weight", athlete.Weight);
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
                 throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return athlete;
+        }
+
+        public bool DeleteAthlete(Athlete athlete)
+        {
+            SqlConnection conn = new SqlConnection(ConnectionData.ConnectionInfo);
+            try
+            {
+                SqlCommand command = new SqlCommand(ConnectionData.DeleteAthlete, conn)
+                    {CommandType = CommandType.StoredProcedure};
+                command.Parameters.AddWithValue("@AthleteId", athlete.AthleteId);
+                return command.ExecuteNonQuery() > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
             }
             finally
             {
