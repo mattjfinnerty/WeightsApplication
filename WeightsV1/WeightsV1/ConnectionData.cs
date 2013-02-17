@@ -15,5 +15,7 @@ namespace WeightsV1
         public const string UpdateAthlete = "UpdateAthlete";
 
         public const string DeleteAthlete = "DeleteAthlete";
+
+        public const string AddAthlete = "AddAthlete";
     }
 }

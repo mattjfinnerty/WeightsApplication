@@ -51,6 +51,36 @@ namespace WeightsV1.ObjectCreation
             }
         }
 
+        public Athlete(string forename, string surname, double? weight)
+        {
+            SqlConnection conn = new SqlConnection(ConnectionData.ConnectionInfo);
+            try
+            {
+                SqlCommand command = new SqlCommand(ConnectionData.AddAthlete, conn) { CommandType = CommandType.StoredProcedure };
+                command.Parameters.AddWithValue("@Forename", forename);
+                command.Parameters.AddWithValue("@Surname", surname);
+                if (weight != null)
+                    command.Parameters.AddWithValue("@WeightKG", weight);
+                SqlParameter athId = new SqlParameter("@AthleteID", 0);
+                athId.Direction = ParameterDirection.Output;
+                command.Parameters.Add(athId);
+                conn.Open();
+                command.ExecuteNonQuery();
+                AthleteId = Convert.ToInt32(athId.Value);
+                Forename = forename;
+                Surname = surname;
+                Weight = weight;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         public static List<Athlete> GetAllAthletes()
         {
             List<Athlete> allAthletes = new List<Athlete>();
@@ -135,6 +165,12 @@ namespace WeightsV1.ObjectCreation
             {
                 conn.Close();
             }
+        }
+
+        public override string ToString()
+        {
+            string athleteString = "Athlete Id: " + AthleteId.ToString() + ", " + Forename + " " + Surname;
+            return athleteString;
         }
     }
 }
