@@ -120,30 +120,31 @@ namespace WeightsV1.ObjectCreation
             }
         }
 
-        public Athlete UpdateAthlete(Athlete athlete)
+        public bool UpdateAthlete()
         {
             SqlConnection conn = new SqlConnection(ConnectionData.ConnectionInfo);
+            if (AthleteId == 0 || string.IsNullOrEmpty(Forename) || string.IsNullOrEmpty(Surname)) return false;
             try
             {
                 SqlCommand command = new SqlCommand(ConnectionData.UpdateAthlete, conn)
                                          {CommandType = CommandType.StoredProcedure};
-                command.Parameters.AddWithValue("@AthleteId", athlete.AthleteId);
-                command.Parameters.AddWithValue("@Forename", athlete.Forename);
-                command.Parameters.AddWithValue("@Surname", athlete.Surname);
-                if (athlete.Weight != null)
-                    command.Parameters.AddWithValue("@Weight", athlete.Weight);
+                command.Parameters.AddWithValue("@AthleteId", AthleteId);
+                command.Parameters.AddWithValue("@Forename", Forename);
+                command.Parameters.AddWithValue("@Surname", Surname);
+                if (Weight != null)
+                    command.Parameters.AddWithValue("@Weight", Weight);
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                throw;
+                return false;
             }
             finally
             {
                 conn.Close();
             }
-            return athlete;
+            return true;
         }
 
         public bool DeleteAthlete(Athlete athlete)
@@ -169,7 +170,7 @@ namespace WeightsV1.ObjectCreation
 
         public override string ToString()
         {
-            string athleteString = "Athlete Id: " + AthleteId.ToString() + ", " + Forename + " " + Surname;
+            string athleteString = "Athlete Id: " + AthleteId + ", " + Forename + " " + Surname;
             return athleteString;
         }
     }
